@@ -389,7 +389,7 @@ class CpeApi implements CpeApiInterface
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams, \JSON_THROW_ON_ERROR);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -675,7 +675,7 @@ class CpeApi implements CpeApiInterface
         if (isset($cpe_document)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($cpe_document));
+                $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($cpe_document), \JSON_THROW_ON_ERROR);
             } else {
                 $httpBody = $cpe_document;
             }
@@ -696,7 +696,7 @@ class CpeApi implements CpeApiInterface
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams, \JSON_THROW_ON_ERROR);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
